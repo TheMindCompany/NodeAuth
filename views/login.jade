@@ -1,0 +1,11 @@
+extends layout
+
+block head
+block content
+		#status
+		form#loginForm(method='POST', action='/login')
+				input#user(name='user', placeholder='User Name')
+				br
+				input#password(name='password', placeholder='Password', type='password')
+				br
+				input#requestLogin(value='Sign In', type='submit')
