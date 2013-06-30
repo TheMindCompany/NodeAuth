@@ -2,8 +2,15 @@ exports.index = function (req, res) {
 	res.render('index');
 };
 
+exports.register = function (req, res) {
+		res.render('register');
+};
+
 exports.login = function (req, res) {
-    res.render('login');
+	if ( !req.session.user )
+		res.render('login');
+	else
+		res.redirect('/');
 };
 
 exports.logout = function (req, res) {
@@ -11,14 +18,14 @@ exports.logout = function (req, res) {
     console.log('User is leaving.');   
 };
 
-exports.getPost = function (req, res) {
-    res.render('blog');
-    console.log('Visitor is view all blog post');   
+exports.startSurvey = function (req, res) {
+    res.render('start');
+    console.log('Starting a survey');   
 };
 
-exports.getPostID = function (req, res) {
-    res.render('blogID');
-    console.log('Visitor is looking at a single post.');   
+exports.createSurvey = function (req, res) {
+    res.render('create');
+    console.log('Writing survey to db.');   
 };
 
 exports.addPost = function (req, res) {

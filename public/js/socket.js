@@ -1,4 +1,4 @@
-var address = '192.168.1.4';
+var address = 'localhost';
 var socket = io.connect('http://' + address + ':3000');
 
 socket.emit('hello');

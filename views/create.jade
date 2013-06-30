@@ -1,0 +1,40 @@
+extends layout
+block section
+        article
+                h1#surveyName.fadeIn Survey Name Placeholder
+                h2 Add Question Type
+                img#sBtn.btnDivL(src="/images/singleAnswerBtn.png")
+                img#mBtn(src="/images/multiAnswerBtn.png")
+                img#wBtn.btnDivR(src="/images/writtenAnswerBtn.png")
+                h2 Add Recipient
+                #contactBox
+                img#eBtn.btnDivL(src="images/emailRecipientBtn.png")
+                img#tBtn.btnDivR(src="images/textRecipientBtn.png")
+                h2 Totals
+                table(summary="Current Total")
+                        tr
+                                td.td1
+                                        p Single
+                                td.td2
+                                        p#singleNumber.fadeIn.numberTotals 0
+                                td.td3
+                                        p Email
+                                td.td4
+                                        p#emailNumber.fadeIn.numberTotals 0
+                        tr
+                                td.td1
+                                        p Multiple
+                                td.td2
+                                        p#multiNumber.fadeIn.numberTotals 0
+                                td.td3
+                                        p Text
+                                td.td4
+                                        p#textNumber.fadeIn.numberTotals 0
+                        tr
+                                td.td1
+                                        p Written
+                                td.td2
+                                        p#writtenNumber.fadeIn.numberTotals 0
+                                td.td3
+                                td.td4
+                input.signinBtn(type="button", value='Complete Survey') 

@@ -9,9 +9,8 @@
     "express": "latest",
     "jade": "latest",
     "socket.io": "latest",
-    "passport": "latest",
-    "passport-local": "latest",
     "connect": "latest",
-    "cookie": "latest"
+    "cookie": "latest",
+    "mongoose": "latest"
   }
 }

@@ -1,11 +1,18 @@
 extends layout
 
 block head
-block content
-		#status
-		form#loginForm(method='POST', action='/login')
-				input#user(name='user', placeholder='User Name')
+		script(src='/js/login.js')
+		
+block section
+		form#login(method='POST', action='/login')
+				input#user.loginField(name='user', placeholder='User Email', type='email', required)
 				br
-				input#password(name='password', placeholder='Password', type='password')
+				input#password.loginField(name='password', placeholder='Password', type='password')
 				br
-				input#requestLogin(value='Sign In', type='submit')
+				#submitBox
+						a#registerLink(href='/register') Create Account
+						input#loginButton(value='Sign In', type='submit')
+				
+				if (msg)
+						br
+						p#status #{msg}

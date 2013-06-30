@@ -1,0 +1,44 @@
+extends layout
+
+block head
+		script(src='/js/login.js')
+		
+block section
+		if (msg)
+				p #{msg}
+		form#register(method='POST', action='/register')
+				p
+						b Sign-In Credentials
+				label(for='user') Email Address
+				br
+				input#user.registerField(name='user', type='email', required)
+				br
+				label(for='password') Password
+				br
+				input#password.registerField(name='password', type='password', required)
+				br
+				br
+				p 
+						b Profile Detail
+				label(for='first') First Name
+				br
+				input#firstName.registerField(name='first')
+				br
+				label(for='middle') Middle Name
+				br
+				input#middleName.registerField(name='middle')
+				br
+				label(for='last') Last Name
+				br
+				input#lastName.registerField(name='last')
+				br
+				label(for='birth') Date Of Birth
+				br
+				input#birthDate.registerField(name='birth')
+				br
+				label(for='gender') Gender
+				br
+				input#genderType.registerField(name='gender')
+				br
+				#submitBox
+						input#registerButton(value='Create Account', type='submit')

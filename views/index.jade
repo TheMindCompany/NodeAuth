@@ -1,5 +1,12 @@
 extends layout
 
 block head
-block content
-        p Hello
+block header hello
+block section
+        article
+                h1 Get Started
+                form(method='GET', action='/survey')
+                        input(type="SUBMIT", value="Create Survey")
+                        h1 Your Survey(s)
+                        ul#pickSurveyList
+                                li You have no survey's.

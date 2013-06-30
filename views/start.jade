@@ -1,0 +1,16 @@
+extends layout
+block section
+        article
+                h1 Survey Details:
+                form(method='POST', action='/survey')
+                        input#name(placeholder='Survey')
+                        input#isPrivate(type="checkbox")
+                        label#cprivate(for='isPrivate')
+                        p#privateText Keep Private
+                        p#datepickerbox.fadeIn Close on:
+                        #datepicker.fadeIn
+                        input#expires(type="checkbox")
+                        label#cdate.fadeIn(for="expires")
+                        p#noDate Don't Close
+                        input.nextBtn(type="submit", value='Add Question(s)')
+                        input.cancelBtn(type="button", value='Cancel')

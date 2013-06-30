@@ -1,6 +1,6 @@
 // All rights reserved 2013 | Brandon Clark and The Mind Company
 
-var address = '192.168.1.4';
+var address = 'localhost';
 
 // Configure server dependecies.
 var express = require('express'),
@@ -9,9 +9,7 @@ var express = require('express'),
     io = require('socket.io').listen(http),
     routes = require('./routes'),
     path = require('path'),
-    passport = require('passport'),
-    util = require('util'),
-    localAuth = require('passport-local');
+    util = require('util');
 http.listen(3000, address);
 console.log('Litening to: ');
 
@@ -45,26 +43,37 @@ app.configure(function() {
 
 // Define express routes.
 app.get('/', LoggIn.requireLoggIn, routes.index);
+app.get('/register', routes.register);
+app.post('/register', function(req, res) {
+	LoggIn.createAccount (req.body.user,req.body.password,req.body.first,req.body.middle,
+						  req.body.last,req.body.birth,req.body.gender,function (user, err){
+		if (user) {
+			req.session.user = user;
+			res.redirect('/');
+			console.log('Logging in.');
+		} else {
+			res.render('register');
+		}
+	});
+});
 app.get('/login', routes.login);
-app.post('/login', function (req, res, cb){
+app.post('/login', function (req, res){
 	LoggIn.authenticate(req.body.user, req.body.password, function(user, msg) {
 		if (user) {
 			req.session.user = user;
 			res.redirect('/');
 		} else {
-			res.render('login');
-			//io.sockets.emit('loginFail', msg);
-			cb(msg);
+			res.render('login', {msg: 'You have entered a invalid user / password!'});
 			console.log('Login Failed! : ' + msg);
 		}
 	});
 });
-app.get('/logout', routes.logout);
-app.get('/blog', routes.getPost);
-app.get('/blog/:id', routes.getPostID);
-app.post('/blog', LoggIn.requireLoggIn, routes.addPost);
-app.put('/blog/:id', LoggIn.requireLoggIn, routes.editPost);
-app.delete('/blog:id', LoggIn.requireLoggIn, routes.deletePost);
+app.get('/logout', LoggIn.requireLoggIn, routes.logout);
+app.get('/survey', LoggIn.requireLoggIn, routes.startSurvey);
+app.post('/survey', LoggIn.requireLoggIn, routes.createSurvey);
+app.get('/survey/:id', LoggIn.requireLoggIn, routes.getPostID);
+app.put('/survey/:id', LoggIn.requireLoggIn, routes.editPost);
+app.delete('/survey/:id', LoggIn.requireLoggIn, routes.deletePost);
 
 
 // Configure socket.io. 
